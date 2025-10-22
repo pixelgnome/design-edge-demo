@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+    </style>
+    <link href="css/styles.css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+    <div class="success-container">
+        <h1>Appointment Scheduled</h1>
+
+        <div id="submitted-data">
+            <!-- Data will be inserted here by JavaScript -->
+        </div>
+
+        <button class="btn" type="submit" onclick="javascript:history.back()">Back to Home <span
+                class="arrow"></span></button>
+    </div>
+
+    <script>
+        // Retrieve and display the form data
+        document.addEventListener('DOMContentLoaded', function () {
+            const dataContainer = document.getElementById('submitted-data');
+            const formDataString = sessionStorage.getItem('formData');
+
+            if (formDataString) {
+                const formData = JSON.parse(formDataString);
+
+                // Create display elements for each form field
+                const fields = [
+                    { label: 'Name:', value: formData.name },
+                    { label: 'Email:', value: formData.email },
+                    { label: 'Service:', value: formData.services },
+                    { label: 'Date:', value: formData.date },
+                    { label: 'Time:', value: formData.time },
+                    { label: 'Message:', value: formData.message }
+                ];
+
+                fields.forEach(field => {
+                    const dataItem = document.createElement('div');
+                    dataItem.className = 'data-item';
+
+                    const label = document.createElement('span');
+                    label.className = 'data-label';
+                    label.textContent = field.label;
+
+                    const value = document.createElement('span');
+                    value.className = 'data-value';
+                    value.textContent = field.value || '(Not provided)';
+
+                    dataItem.appendChild(label);
+                    dataItem.appendChild(value);
+                    dataContainer.appendChild(dataItem);
+                });
+
+                // Optional: Clear the stored data after displaying
+                // sessionStorage.removeItem('formData');
+            } else {
+                dataContainer.innerHTML = '<p class="no-data">No form data found. Please submit the form first.</p>';
+            }
+        });
+    </script>
+</body>
+
+</html>
