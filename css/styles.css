@@ -8,9 +8,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+  font: normal 400 18px "Poppins", sans-serif;
   background-color: var(--main-bg-color);
   margin: 0;
   padding: 0;
@@ -84,6 +82,14 @@ nav ul li a {
   font-style: normal;
   text-decoration: none;
   color: var(--text-color);
+}
+
+.caret {
+  background: url(../img/caret.png) no-repeat top center;
+  display: inline-block;
+  width: 8px;
+  height: 5px;
+  margin-left: 4px;
 }
 
 .content {
